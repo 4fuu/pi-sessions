@@ -1,0 +1,49 @@
+{
+  "name": "@4fu/pi-sessions",
+  "version": "0.1.0",
+  "description": "Search and read saved pi sessions from the agent",
+  "license": "MIT",
+  "author": "4fuu",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/4fuu/pi-sessions.git"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "keywords": [
+    "pi-package",
+    "pi-extension",
+    "sessions",
+    "conversation-history"
+  ],
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "pi": {
+    "extensions": [
+      "./src/index.ts"
+    ]
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "npm run typecheck && node --test tests/*.test.ts"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-ai": ">=0.84.1 <1",
+    "@earendil-works/pi-coding-agent": ">=0.84.1 <1",
+    "@earendil-works/pi-tui": ">=0.84.1 <1",
+    "typebox": ">=1.3.11 <2"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-ai": "^0.84.1",
+    "@earendil-works/pi-coding-agent": "^0.84.1",
+    "@earendil-works/pi-tui": "^0.84.1",
+    "@types/node": "^24.0.0",
+    "typebox": "^1.3.11",
+    "typescript": "^5.9.0"
+  }
+}
