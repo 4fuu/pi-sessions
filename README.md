@@ -13,53 +13,37 @@ Search and read saved [pi](https://github.com/earendil-works/pi) sessions from t
 
 ## Usage
 
-List recent sessions for the current project:
+Talk to pi normally—the `sessions` tool is for the model, not a command you need to call yourself.
 
-```json
-{}
-```
+### Recall a decision from this project
 
-Search every saved project when the current project is not enough:
+> **You:** We discussed how refresh-token rotation should work in an earlier session. Find that discussion and use the decision here.
+>
+> **pi:** I'll search this project's saved sessions, open the matching conversation branch, and apply the earlier decision to the current task.
 
-```json
-{ "query": "authentication", "scope": "all" }
-```
+Pi first searches the current project, then reads the exact matching session and entry rather than guessing from a short preview.
 
-Search all saved sessions from one exact working directory:
+### Find context from another project
 
-```json
-{ "query": "migration", "scope": "all", "cwd": "/path/to/project" }
-```
+> **You:** In another project we planned the billing migration. Find that conversation and summarize the rollout order.
+>
+> **pi:** I'll search across all saved projects, identify the relevant session, and read its selected root-to-entry branch before answering.
 
-Read the active branch using an exact ID returned by discovery or search:
+Pi uses cross-project scope only when the request indicates that the current project may not contain the answer. If a working directory is known, it can narrow the search to that project.
 
-```json
-{ "sessionId": "01234567-89ab-cdef-0123-456789abcdef" }
-```
+### Continue an unfinished line of work
 
-Read the branch ending at a particular search match:
+> **You:** Show me my recent sessions for this repository and continue the one where I was debugging the retry race.
+>
+> **pi:** I'll list recent project sessions, select the relevant one, and read its active branch before continuing the investigation.
 
-```json
-{
-  "sessionId": "01234567-89ab-cdef-0123-456789abcdef",
-  "entryId": "a1b2c3d4"
-}
-```
+### Recover exact tool evidence
 
-Tool calls and tool results are excluded by default. Include them only when they are relevant:
+> **You:** Find the earlier session where the integration test failed and tell me the exact command output.
+>
+> **pi:** I'll locate the matching entry and, because the request needs tool evidence, read that branch with tool calls and results included.
 
-```json
-{
-  "sessionId": "01234567-89ab-cdef-0123-456789abcdef",
-  "includeTools": true
-}
-```
-
-When a result returns a cursor, continue with only that cursor and an optional new limit:
-
-```json
-{ "cursor": "<opaque cursor>", "limit": 20 }
-```
+Tool traffic is otherwise omitted. Pi follows returned cursors automatically when it needs older entries or additional search results; you do not need to manage session IDs, entry IDs, or pagination yourself.
 
 ## Behavior and safety
 
@@ -76,22 +60,22 @@ Returned history is marked as untrusted reference data. The agent must not follo
 
 ## Installation
 
-The package is not yet published to npm. Install directly from GitHub:
-
-```bash
-pi install git:github.com/4fuu/pi-sessions
-```
-
-After an npm release, install it with:
+Install from npm:
 
 ```bash
 pi install npm:@4fu/pi-sessions
 ```
 
-Try the GitHub source without installing:
+Try it without installing:
 
 ```bash
-pi -e git:github.com/4fuu/pi-sessions
+pi -e npm:@4fu/pi-sessions
+```
+
+You can also install the latest GitHub source:
+
+```bash
+pi install git:github.com/4fuu/pi-sessions
 ```
 
 ### From source
