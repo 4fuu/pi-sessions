@@ -15,6 +15,8 @@ Search and read saved [pi](https://github.com/earendil-works/pi) sessions from t
 
 Talk to pi normally—the `sessions` tool is for the model, not a command you need to call yourself.
 
+In Pi's interactive editor, type `@@` to open a selector for sessions saved in the current project. Continue typing to filter by session name, first message, or ID, then select an item to insert its stable `@@<sessionId>` reference. Pi reads that exact session before using its history. A single `@` keeps Pi's normal file autocomplete behavior.
+
 ### Recall a decision from this project
 
 > **You:** We discussed how refresh-token rotation should work in an earlier session. Find that discussion and use the decision here.
