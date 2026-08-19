@@ -1,6 +1,6 @@
 {
   "name": "@4fu/pi-sessions",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Search and read saved pi sessions from the agent",
   "license": "MIT",
   "author": "4fuu",
